@@ -18,7 +18,6 @@ namespace ariel{
         Fraction (int numerator,int denominator);
 
         Fraction& operator++();
-    
         Fraction& operator--();
         Fraction& operator= (const Fraction& other);    
         Fraction operator+ (Fraction& other) const;
@@ -56,7 +55,7 @@ namespace ariel{
         int getNumerator();
         int getDenominator();
         void setNumerator(int numerator);
-        void setDenominator(int ndenominator); 
+        void setDenominator(int denominator); 
 
         int gcd(int num1, int num2) const;
         int lcm(int num1, int num2) const;
