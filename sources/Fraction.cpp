@@ -177,13 +177,11 @@ Fraction ariel::operator/(const Fraction &f2, float f1)
     return Fraction(0, 1);
 }
 
-std::ostream &ariel::operator<<(std::ostream &output, const Fraction &f)
-{
+std::ostream& operator<<(std::ostream& output, const Fraction& fraction){
     return output;
 }
 
-std::istream &ariel::operator>>(std::istream &input, const Fraction &f)
-{
+std::istream& operator>>(std::istream& input, Fraction& fraction){
     return input;
 }
 
@@ -206,16 +204,27 @@ int Fraction ::lcm(int num1, int num2) const
     return (num1 / gcd(num1, num2)) * num2;
 }
 
-Fraction &Fraction::operator++()
-{
-    this->numerator += this->denominator;
+Fraction& Fraction ::operator++(){
+    this ->numerator += this ->denominator;
     return *this;
+    
+}
+
+Fraction Fraction::operator++(int) { 
+
+    return Fraction(1, 2); 
 }
 
 Fraction &Fraction ::operator--()
 {
     this->numerator += this->denominator;
     return *this;
+}
+
+Fraction Fraction::operator--(int) { 
+     
+    return Fraction(1, 2);
+        
 }
 
 string Fraction ::toString()
@@ -225,17 +234,17 @@ string Fraction ::toString()
     return oss.str();
 }
 
-int Fraction::getNumerator()
+int Fraction::getNumerator() const
 {
     return this->numerator;
 }
 
-int Fraction::getDenominator()
+int Fraction::getDenominator() const
 {
     return this->denominator;
 }
 
-void Fraction::setNumerator(int nnumerator)
+void Fraction::setNumerator(int numerator) 
 {
     this->numerator = numerator;
 }

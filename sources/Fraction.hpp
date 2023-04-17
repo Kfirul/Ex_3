@@ -13,12 +13,18 @@ namespace ariel{
         int numerator;
         int denominator;
 
+        int gcd(int num1, int num2) const;
+        int lcm(int num1, int num2) const;
+
         public:
 
         Fraction (int numerator,int denominator);
 
         Fraction& operator++();
         Fraction& operator--();
+        Fraction operator++(int);
+        Fraction operator--(int);
+
         Fraction& operator= (const Fraction& other);    
         Fraction operator+ (Fraction& other) const;
         Fraction operator- (Fraction& other) const;
@@ -49,16 +55,13 @@ namespace ariel{
         friend bool operator>= (const Fraction& f2, float f1);
         friend bool operator<= (const Fraction& f2, float f1);
     
-        std::ostream& operator<< (std::ostream& output, const Fraction& c);
-        std::istream& operator>> (std::istream& input , Fraction& c); 
+        friend std::ostream& operator<<(std::ostream& out, const Fraction& fraction);
+        friend std::istream& operator>>(std::istream& in, Fraction& fraction);
 
-        int getNumerator();
-        int getDenominator();
+        int getNumerator() const;
+        int getDenominator() const;
         void setNumerator(int numerator);
         void setDenominator(int denominator); 
-
-        int gcd(int num1, int num2) const;
-        int lcm(int num1, int num2) const;
 
         string toString();
         };
