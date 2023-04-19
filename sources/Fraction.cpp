@@ -4,8 +4,8 @@
 #include <vector>
 #include "Fraction.hpp"
 
-using namespace std;
 using namespace ariel;
+using namespace std;
 
 Fraction ::Fraction(int numerator, int denominator)
 {
@@ -77,6 +77,14 @@ bool Fraction::operator<=(Fraction &other) const
     return num1 <= num2;
 }
 
+bool Fraction :: operator!=(Fraction &other) const{
+    return this->numerator!= other.numerator || this->denominator != other.denominator;
+}
+
+bool Fraction :: operator==(Fraction &other) const{
+    return this->numerator== other.numerator && this->denominator == other.denominator;
+}
+
 Fraction &Fraction::operator=(const Fraction &other)
 {
     if (this == &other)
@@ -88,101 +96,98 @@ Fraction &Fraction::operator=(const Fraction &other)
     return *this;
 }
 
-bool ariel::operator>(float f1, const Fraction &f2)
+bool ariel :: operator>(float f1, const Fraction &f2)
 {
     float f2_float = (float)f2.getNumerator() / f2.getDenominator();
     return f1 > f2_float;
 }
 
-bool ariel::operator<(float f1, const Fraction &f2)
+bool ariel :: operator<(float f1, const Fraction &f2)
 {
     float f2_float = (float)f2.getNumerator() / f2.getDenominator();
     return f1 < f2_float;
 }
 
-bool ariel::operator>=(float f1, const Fraction &f2)
+bool ariel ::operator>=(float f1, const Fraction &f2)
 {
     float f2_float = (float)f2.getNumerator() / f2.getDenominator();
     return f1 >= f2_float;
 }
 
-bool ariel::operator<=(float f1, const Fraction &f2)
+bool ariel :: operator<=(float f1, const Fraction &f2)
 {
     float f2_float = (float)f2.getNumerator() / f2.getDenominator();
     return f1 <= f2_float;
 }
 
-bool ariel::operator>(const Fraction &f2, float f1)
+bool ariel :: operator>(const Fraction &f2, float f1)
 {
-    return f1>f2;
+    return true;
 }
 
-bool ariel::operator<(const Fraction &f2, float f1)
+bool ariel :: operator<(const Fraction &f2, float f1)
 {
-    return f1<f2;
+    return true;
 }
 
-bool ariel::operator>=(const Fraction &f2, float f1)
+bool ariel :: operator>=(const Fraction &f2, float f1)
 {
-    return f1>=f2;
+    return true;
 }
 
-bool ariel::operator<=(const Fraction &f2, float f1)
+bool ariel :: operator<=(const Fraction &f2, float f1)
 {
-    return f1<=f2;
+    return true;
 }
 
-bool ariel::operator==(const Fraction &f1, const Fraction &f2)
-{
-    return f1==f2;
-}
-
-Fraction ariel::operator+(float f1, const Fraction &f2)
+Fraction ariel :: operator+(float f1, const Fraction &f2)
 {
     return Fraction(0, 1);
 }
 
-Fraction ariel::operator-(float f1, const Fraction &f2)
+Fraction ariel :: operator-(float f1, const Fraction &f2)
 {
     return Fraction(0, 1);
 }
 
-Fraction ariel::operator*(float f1, const Fraction &f2)
+Fraction ariel :: operator*(float f1, const Fraction &f2)
 {
     return Fraction(0, 1);
 }
 
-Fraction ariel::operator/(float f1, const Fraction &f2)
+Fraction ariel :: operator/(float f1, const Fraction &f2)
 {
     return Fraction(0, 1);
 }
 
-Fraction ariel::operator+(const Fraction &f2, float f1)
+Fraction ariel :: operator+(const Fraction &f2, float f1)
 {
     return Fraction(0, 1);
 }
 
-Fraction ariel::operator-(const Fraction &f2, float f1)
+Fraction ariel :: operator-(const Fraction &f2, float f1)
 {
     return Fraction(0, 1);
 }
 
-Fraction ariel::operator*(const Fraction &f2, float f1)
+Fraction ariel :: operator*(const Fraction &f2, float f1)
 {
     return Fraction(0, 1);
 }
 
-Fraction ariel::operator/(const Fraction &f2, float f1)
+Fraction ariel :: operator/(const Fraction &f2, float f1)
 {
     return Fraction(0, 1);
 }
 
-std::ostream& operator<<(std::ostream& output, const Fraction& fraction){
-    return output;
+std::ostream& ariel :: operator<<(ostream &output, const Fraction &fraction) {
+    return (output << fraction.getNumerator() << '/' << fraction.getDenominator());
 }
 
-std::istream& operator>>(std::istream& input, Fraction& fraction){
-    return input;
+std::istream& ariel :: operator>>(istream & in, Fraction &fraction) {
+    std:: string input;
+    in >> input;
+    return in;
 }
 
 int Fraction ::gcd(int num1, int num2) const
@@ -225,13 +230,6 @@ Fraction Fraction::operator--(int) {
      
     return Fraction(1, 2);
         
-}
-
-string Fraction ::toString()
-{
-    ostringstream oss;
-    oss << this->numerator << "/" << this->denominator;
-    return oss.str();
 }
 
 int Fraction::getNumerator() const

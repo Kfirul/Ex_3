@@ -24,17 +24,17 @@ TEST_CASE("Check binary operators"){
     CHECK(f2 / f1 == Fraction(2,3));
     
     // Relational operators
-    CHECK(f1 > f2 == true);
-    CHECK(f2 > f1 == false);
-    CHECK(f1 < f2 == false);
-    CHECK(f2 < f1 == true);
-    CHECK(f1 >= f3 == true);
-    CHECK(f3 >= f1 == true);
-    CHECK(f1 <= f3 == true);
-    CHECK(f3 <= f1 == true);
-    CHECK(f1 == f3 == true);
-    CHECK(f1 != f2 == true);
-    CHECK(f2 != f3 == false);
+    CHECK(f1 > f2);
+    CHECK(f2 > f1);
+    CHECK(f1 < f2);
+    CHECK(f2 < f1);
+    CHECK(f1 >= f3);
+    CHECK(f3 >= f1);
+    CHECK(f1 <= f3);
+    CHECK(f3 <= f1);
+    CHECK(f1 == f3);
+    CHECK(f1 != f2);
+    CHECK(f2 != f3);
 }
 
 
@@ -56,10 +56,10 @@ TEST_CASE("Check with float parameters"){
     CHECK(f11/0.5 == Fraction(1,1));
 
     // Relational operators
-    CHECK(f11>0.25 == true);
-    CHECK(f11>=0.5 == true);
-    CHECK(0.25>f11 == true);
-    CHECK(0.5>=f11 == true);
+    CHECK(f11>0.25);
+    CHECK(f11>=0.5);
+    CHECK(0.25>f11);
+    CHECK(0.5>=f11);
     
     
 }
