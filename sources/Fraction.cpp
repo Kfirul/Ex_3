@@ -24,6 +24,7 @@ Fraction Fraction ::operator+(Fraction &other) const
     return Fraction(numerator, denominator);
 }
 
+
 Fraction Fraction ::operator-(Fraction &other) const
 {
     int denominator = lcm(this->denominator, other.denominator);
