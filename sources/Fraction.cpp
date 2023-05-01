@@ -1,17 +1,42 @@
 #include <iostream>
 #include <sstream>
 #include <string>
-#include <vector>
+#include <cmath>
+#include <climits>
 #include "Fraction.hpp"
 
-using namespace ariel;
 using namespace std;
+using namespace ariel;
 
 Fraction ::Fraction(int numerator, int denominator)
 {
     if (denominator == 0)
         throw invalid_argument("Denominator can't be zero.");
-    ;
+
+    if (denominator < 0) {
+            numerator = -1 * numerator;
+            denominator = abs(denominator);
+    }    
+    
+    int GreatCommonDivider = gcd(numerator, denominator);
+    this->numerator = numerator / GreatCommonDivider;
+    this->denominator = denominator / GreatCommonDivider;
+}
+
+Fraction :: Fraction(){
+    this -> numerator = 0;
+    this -> denominator = 1;
+}
+
+Fraction::Fraction(float numerator) {
+    this -> numerator = round (numerator*1000);
+    this -> denominator = 1000;
+    
+    if (denominator < 0) {
+            numerator = -1 * numerator;
+            denominator = abs(denominator);
+    }    
+
     int GreatCommonDivider = gcd(numerator, denominator);
     this->numerator = numerator / GreatCommonDivider;
     this->denominator = denominator / GreatCommonDivider;
@@ -19,7 +44,7 @@ Fraction ::Fraction(int numerator, int denominator)
 
 Fraction Fraction ::operator+(Fraction &other) const
 {
-    int denominator = lcm(this->denominator, other.denominator);
+    int denominator = this->denominator * other.denominator;
     int numerator = this->numerator * (denominator / this->denominator) + other.numerator * (denominator / other.denominator);
     return Fraction(numerator, denominator);
 }
@@ -27,7 +52,7 @@ Fraction Fraction ::operator+(Fraction &other) const
 
 Fraction Fraction ::operator-(Fraction &other) const
 {
-    int denominator = lcm(this->denominator, other.denominator);
+    int denominator = this->denominator* other.denominator;
     int numerator = this->numerator * (denominator / this->denominator) - other.numerator * (denominator / other.denominator);
     return Fraction(numerator, denominator);
 }
@@ -48,33 +73,33 @@ Fraction Fraction::operator/(Fraction &other) const
 
 bool Fraction::operator>(Fraction &other) const
 {
-    int lcm_den = lcm(denominator, other.denominator);
-    int num1 = numerator * (lcm_den / denominator);
-    int num2 = other.numerator * (lcm_den / other.denominator);
+    int mul = denominator * other.denominator;
+    int num1 = numerator * (mul / denominator);
+    int num2 = other.numerator * (mul / other.denominator);
     return num1 > num2;
 }
 
 bool Fraction::operator<(Fraction &other) const
 {
-    int lcm_den = lcm(denominator, other.denominator);
-    int num1 = numerator * (lcm_den / denominator);
-    int num2 = other.numerator * (lcm_den / other.denominator);
+    int mul = denominator * other.denominator;
+    int num1 = numerator * (mul / denominator);
+    int num2 = other.numerator * (mul / other.denominator);
     return num1 < num2;
 }
 
 bool Fraction::operator>=(Fraction &other) const
 {
-    int lcm_den = lcm(denominator, other.denominator);
-    int num1 = numerator * (lcm_den / denominator);
-    int num2 = other.numerator * (lcm_den / other.denominator);
+    int mul = denominator * other.denominator;
+    int num1 = numerator * (mul / denominator);
+    int num2 = other.numerator * (mul / other.denominator);
     return num1 >= num2;
 }
 
 bool Fraction::operator<=(Fraction &other) const
 {
-    int lcm_den = lcm(denominator, other.denominator);
-    int num1 = numerator * (lcm_den / denominator);
-    int num2 = other.numerator * (lcm_den / other.denominator);
+    int mul = denominator * other.denominator;
+    int num1 = numerator * (mul / denominator);
+    int num2 = other.numerator * (mul / other.denominator);
     return num1 <= num2;
 }
 
@@ -205,11 +230,6 @@ int Fraction ::gcd(int num1, int num2) const
     return gcd(num2, num1 % num2);
 }
 
-int Fraction ::lcm(int num1, int num2) const
-{
-    return (num1 / gcd(num1, num2)) * num2;
-}
-
 Fraction& Fraction ::operator++(){
     this ->numerator += this ->denominator;
     return *this;
@@ -256,3 +276,5 @@ void Fraction::setDenominator(int denominator)
     }
     this->denominator = denominator;
 }
+;
+

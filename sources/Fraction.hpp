@@ -7,18 +7,19 @@
 
 using namespace std;
 
-namespace ariel{
+namespace ariel {
     class Fraction{
         int numerator;
         int denominator;
 
         int gcd(int num1, int num2) const;
-        int lcm(int num1, int num2) const;
 
         public:
 
         Fraction (int numerator,int denominator);
-
+        Fraction();
+        Fraction(float number);
+        
         Fraction& operator++();
         Fraction& operator--();
         Fraction operator++(int);
@@ -62,7 +63,7 @@ namespace ariel{
         void setNumerator(int numerator);
         void setDenominator(int denominator); 
         };
-
 }
+
 
 #endif
