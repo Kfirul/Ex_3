@@ -68,8 +68,8 @@ namespace ariel {
         int getDenominator() const;
         void setNumerator(int numerator);
         void setDenominator(int denominator); 
+
         };
+
 }
-
-
 #endif
