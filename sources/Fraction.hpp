@@ -9,6 +9,7 @@ using namespace std;
 
 namespace ariel {
     class Fraction{
+        
         int numerator;
         int denominator;
 
@@ -36,15 +37,17 @@ namespace ariel {
         bool operator== (const Fraction& other) const; 
         bool operator!= (const Fraction& other) const; 
 
-        friend Fraction operator+ (const float& f11, Fraction& f22);
-        friend Fraction operator- (const float& f11, Fraction& f22);
-        friend Fraction operator* (const float& f11, Fraction& f22);
-        friend Fraction operator/ (const float& f11, Fraction& f22);
-        friend bool operator> (const float& f11, Fraction& f22);
-        friend bool operator< (const float& f11, Fraction& f22);
-        friend bool operator>= (const float& f11, Fraction& f22);
-        friend bool operator<= (const float& f11, Fraction& f22);
-        friend bool operator== (const float& f11, Fraction& f22);
+        friend Fraction operator+ (const float& f11,const Fraction& f22);
+        friend Fraction operator- (const float& f11,const Fraction& f22);
+        friend Fraction operator* (const float& f11,const Fraction& f22);
+        friend Fraction operator/ (const float& f11,const Fraction& f22);
+        friend bool operator> (const float& f11,const Fraction& f22);
+        friend bool operator< (const float& f11,const Fraction& f22);
+        friend bool operator>= (const float& f11,const Fraction& f22);
+        friend bool operator<= (const float& f11,const Fraction& f22);
+        friend bool operator== (const float& f11,const Fraction& f22);
+        friend bool operator!= (const float& f11,const Fraction& f22);
+
 
          Fraction operator+ (const float& f11) const;
          Fraction operator- (const float& f11) const;
@@ -55,6 +58,7 @@ namespace ariel {
          bool operator>= (const float& f11) const;
          bool operator<= (const float& f11) const;
          bool operator== (const float& f11) const;
+         bool operator!= (const float& f11) const;
     
         friend std::ostream &operator<<(std::ostream &os_, const Fraction &fraction);
         friend std::istream &operator>>(std::istream &input, Fraction &fraction);
